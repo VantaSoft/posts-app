@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../api/posts";
+import { createPost } from "@/api/posts";
 
 function CreatePost() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    createPost({ title, content })
-      .then(() => {
-        navigate("/");
-      })
-      .catch((err) => console.error(err));
+    try {
+      await createPost({ title, content });
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { listPosts } from "../api/posts";
+import { listPosts, Post } from "@/api/posts";
 
 function PostList() {
-  const [posts, setPosts] = useState([]);
-
-  console.log("posts", posts);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    listPosts().then(setPosts).catch(console.error);
+    const getData = async () => {
+      try {
+        const res = await listPosts();
+        setPosts(res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getData();
   }, []);
 
   return (
