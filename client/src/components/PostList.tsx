@@ -33,7 +33,7 @@ function PostList() {
         {posts.map((post) => (
           <Link
             key={post.id}
-            className="mb-3 rounded border border-gray-200 p-3"
+            className="mb-3 flex flex-col rounded border border-gray-200 p-3"
             to={`/post/${post.id}`}
           >
             <div className="text-lg font-semibold">{post.title}</div>
