@@ -31,15 +31,14 @@ function PostList() {
       </div>
       <div>
         {posts.map((post) => (
-          <div
+          <Link
             key={post.id}
             className="mb-3 rounded border border-gray-200 p-3"
+            to={`/post/${post.id}`}
           >
-            <Link to={`/post/${post.id}`} className="text-lg font-semibold">
-              {post.title}
-            </Link>
+            <div className="text-lg font-semibold">{post.title}</div>
             <p>{post.content}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
